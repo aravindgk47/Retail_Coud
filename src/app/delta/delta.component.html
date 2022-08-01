@@ -1,0 +1,46 @@
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<h3 style="PADDING-LEFT: 50%;">DELTA<button (click)="download()"> Download </button>
+</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Distrcit</th>
+      <th scope="col">Active</th>
+      <th scope="col">Confirmed</th>
+      <th scope="col">Deceased</th>
+      <th scope="col">Home obs</th>
+      <th scope="col">Hospital obs</th>
+      <th scope="col">Hospital today</th>
+      <th scope="col">Recovered</th>
+      <th scope="col">Total obs</th>
+     <th scope="col">pop</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr  *ngFor=" let name of districtName; let j = index">
+          <ng-container *ngFor=" let item of delta; let i = index">
+          <td>{{ name }}  </td>    
+          <td>{{item[name].active}}</td>        
+          <td>{{item[name].confirmed}}</td>
+          <td>{{item[name].deceased}}</td>
+          <td>{{item[name].home_obs}}</td>
+          <td>{{item[name].hospital_obs}}</td>
+          <td>{{item[name].hospital_today}}</td>
+          <td>{{item[name].recovered}}</td>
+          <td>{{item[name].total_obs}}</td> 
+          <td><button ype="button" class="btn btn-secondary" (click)="modal(item[name].recovered)" >Select</button></td>                  
+        </ng-container>       
+        </tr>      
+  </tbody>
+
+</table>
+<app-modal [recoveryChild]="recovery" #child></app-modal>
